@@ -4,17 +4,18 @@ import numpy as np
 
 class Amortization(object):
 
-    def _init_(self, amount, interest, n):
+    def __init__(self, amount, interest, n):
         self.amount = amount
         self.interest = interest
         self.n = n
 
+    @property
     def annuity(self):
-        annuity = self.amount / ((1-(1+self.interest)**(-self.n))/self.interest)
+        annuity = self.amount*self.interest / (1-(1+self.interest)**(-self.n))
         return annuity
 
     def get_table(self):
-        Annuity = self.annuity()
+        Annuity = self.annuity
         Principal_l = [0]
         Interest_l = [0]
         Annuity_l = [Annuity]
